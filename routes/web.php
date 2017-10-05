@@ -12,11 +12,22 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
+//rutas del front
 
 
+
+
+
+
+
+// ruta de los controladores
+Route::resource('products','ProductController');
+Route::resource('contacts','ContactsController');
+
+
+// rutas de autenticacion
 Auth::routes();
-
 Route::get('user/home', 'HomeController@index')->name('home');

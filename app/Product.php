@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +9,4 @@ class Product extends Model
 	protected $fillable = ['nombre', 'imagen', 'descripcion','valor'];
 }
 
-	public function user()
-	{
-		return $this->belongsTo('App\User');
-	}
+
