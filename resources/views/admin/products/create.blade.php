@@ -4,7 +4,7 @@
 
 @section('content')
 
-{!! Form::open(['route' => 'products.store', 'method' => 'POST']) !!}
+{!! Form::open(['route' => 'products.store', 'method' => 'POST', 'files' => true]) !!}
 
 <div class="form-group">
 	{!! Form::label('nombre', 'Nombre') !!}
@@ -14,7 +14,7 @@
 
 <div class="form-group">
 	{!! Form::label('descripcion', 'Descripcion') !!}
-	{!! Form::text('descripcion', null, ['class' =>'form-control', 'placeholder' => 'Descripcion producto', 'required']) !!}
+	{!! Form::textarea('descripcion', null, ['class' =>'form-control', 'placeholder' => 'Descripcion producto', 'required']) !!}
 </div>
 
 <div class="form-group">
@@ -22,13 +22,13 @@
 	{!! Form::text('valor', null, ['class' =>'form-control', 'placeholder' => 'valor producto', 'required']) !!}
 </div>
 
-<div class="form-group" >					
+<div class="uk-margin col s12" align="center">					
 	{!! Form::file('imagen') !!}
 </div>
 
 
 <div class="form-group">
-	{!! Form::submit('Agregar articulo', ['class' => 'btn btn-primary']) !!}
+	{!! Form::submit('Agregar producto', ['class' => 'btn btn-primary']) !!}
 </div>
 {!! Form::close() !!}
 

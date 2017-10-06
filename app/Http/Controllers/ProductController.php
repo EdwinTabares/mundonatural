@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
-use Laracasts\Flash\Flash;
+use App\Modelo\Product;
 use Illuminate\Support\Facades\Storage;
+use Laracasts\Flash\Flash;
+
 
 class ProductController extends Controller
 {
 	public function index()
 	{
 		
-        return view('admin.products.index');
+        $products = Product::orderBy('titulo', 'ASC')->paginate(5);
+        return view('admin.products.index')->with('products',$products);
         
     }
 
@@ -35,26 +37,24 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
+     $product = new Product($request->all());
 
-        $product = new Product($request->all());
-
-
-        if($request->file('imagen'))
-        {
-            $file = $request->file('imagen');
-            $name = 'noticia_' . time() . '.'. $file->getClientOriginalExtension();
-            $path =  public_path() ; 
-            $file -> move($path,$name);
-            $product->imagen = $name;
-        }
-
-
-
-        $product->save();
-
-        Flash::success("Se ha registrado el producto ".$product->nombre." de forma exitosa.");
-        return redirect()->route('products.index');              
+     if($request->file('imagen'))
+     {
+        $file = $request->file('imagen');
+        $name = 'producto_' . time() . '.'. $file->getClientOriginalExtension();
+        $path =  public_path() . '/storage/productos/'; 
+        $file -> move($path,$name);
+        $product->imagen = $name;
     }
+
+
+    $product->save();
+
+    Flash::success("Se ha registrado el producto ".$product->nombre." de forma exitosa.");
+
+
+}
 
     /**
      * Display the specified resource.
