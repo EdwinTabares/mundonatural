@@ -11,11 +11,6 @@
 	{!! Form::text('nombre', null, ['class' =>'form-control', 'placeholder' => 'Nombre producto', 'required']) !!}
 </div>
 
-<div class="form-group">
-	{!! Form::label('imagen', 'imagen') !!}
-	{!! Form::text('imagen', null, ['class' =>'form-control', 'placeholder' => 'imagen', 'required']) !!}
-</div>
-
 
 <div class="form-group">
 	{!! Form::label('descripcion', 'Descripcion') !!}
@@ -27,6 +22,9 @@
 	{!! Form::text('valor', null, ['class' =>'form-control', 'placeholder' => 'valor producto', 'required']) !!}
 </div>
 
+<div class="form-group" >					
+	{!! Form::file('imagen') !!}
+</div>
 
 
 <div class="form-group">

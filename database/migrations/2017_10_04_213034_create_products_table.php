@@ -20,8 +20,6 @@ class CreateProductsTable extends Migration
             $table->text('descripcion');
             $table->double('valor',15, 8);
             $table->timestamps();
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

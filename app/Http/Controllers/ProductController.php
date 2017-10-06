@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use Laracasts\Flash\Flash;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -32,12 +34,26 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $product = new Product($request->all());
 
-        
+
+        if($request->file('imagen'))
+        {
+            $file = $request->file('imagen');
+            $name = 'noticia_' . time() . '.'. $file->getClientOriginalExtension();
+            $path =  public_path() ; 
+            $file -> move($path,$name);
+            $product->imagen = $name;
+        }
+
+
+
         $product->save();
 
-        return redirect()->route('admin.products.index');              
+        Flash::success("Se ha registrado el producto ".$product->nombre." de forma exitosa.");
+        return redirect()->route('products.index');              
     }
 
     /**
