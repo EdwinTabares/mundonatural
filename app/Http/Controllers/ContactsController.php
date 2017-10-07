@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Contact;
+use App\Modelo\Contacto;
 use App\Http\Requests\ContactRequest;
 use Laracasts\Flash\Flash;
 
@@ -14,9 +14,15 @@ class ContactsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
      public function index(Request $request)
      {
         $contactos = Contact::search($request->nombre)->paginate(5);
+=======
+	public function index(Request $request)
+    {
+    	$contactos = Contacto::search($request->nombre)->paginate(5);
+>>>>>>> 0533489300f9f3ff09ee99de68a4e9bb3652c7af
         return view('admin.contact.index')->with('contactos',$contactos);
     }
 
@@ -38,10 +44,10 @@ class ContactsController extends Controller
      */
     public function store(ContactRequest $request)    {
 
-        $contacto = new  Contact($request->all());
-        $contacto->save();
-        Flash::success("Tu mensaje ha sido enviado de manera exitsosa.");
-        return redirect('/');
+         $contacto = new  Contacto($request->all());
+         $contacto->save();
+         Flash::success("Tu mensaje ha sido enviado de manera exitsosa.");
+         return redirect('/');
     }
 
     /**
@@ -52,7 +58,7 @@ class ContactsController extends Controller
      */
     public function show($id)
     {
-        $contacto = Contact::find($id);
+        $contacto = Contacto::find($id);
         return view('admin.contact.show')->with('contacto',$contacto);
     }
 
@@ -64,7 +70,7 @@ class ContactsController extends Controller
      */
     public function edit($id)
     {
-        $contacto = Contact::find($id);
+        $contacto = Contacto::find($id);
         return view('admin.contact.edit')->with('user',$contacto);
     }
 
@@ -77,11 +83,11 @@ class ContactsController extends Controller
      */
     public function update(Request $request, $id)
     {
-     $contacto = Contact::find($id);
-     $contacto->fill($request->all());
-     $contacto->save();
-     return redirect('panel/contacts');
- }
+         $contacto = Contacto::find($id);
+         $contacto->fill($request->all());
+         $contacto->save();
+         return redirect('panel/contacts');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -91,8 +97,8 @@ class ContactsController extends Controller
      */
     public function destroy($id)
     {
-       Contact::find($id)->delete();
+       Contacto::find($id)->delete();
        Flash::error("Se ha eliminado el contacto de forma exitosa.");
        return redirect('panel/contacts');
-   }
+    }
 }

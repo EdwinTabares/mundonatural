@@ -3,17 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
-use Laracasts\Flash\Flash;
+use App\Modelo\Product;
 use Illuminate\Support\Facades\Storage;
+use Laracasts\Flash\Flash;
+
 
 class ProductController extends Controller
 {
 	public function index()
+<<<<<<< HEAD
     {
 
       $products = Product::orderBy('id', 'ASC')->paginate(4);
       return view('admin.products.index')->with('products', $products);
+=======
+	{
+		
+        //dd("index productos");
+        $products = Product::orderBy('id', 'ASC')->paginate(5);
+        return view('admin.products.index')->with('products',$products);
+        
+>>>>>>> 0533489300f9f3ff09ee99de68a4e9bb3652c7af
     }
 
         /**
@@ -34,6 +44,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         $product = new Product($request->all());
 
           if($request->file('imagen'))
@@ -45,13 +56,33 @@ class ProductController extends Controller
             $product->imagen = $name;
         }
 
+=======
+
+     $product = new Product($request->all());
+
+     if($request->file('imagen'))
+     {
+        $file = $request->file('imagen');
+        $name = 'producto_' . time() . '.'. $file->getClientOriginalExtension();
+        $path =  public_path() . '/storage/productos/'; 
+        $file -> move($path,$name);
+        $product->imagen = $name;
+    }
 
 
-        $product->save();
+    $product->save();
+>>>>>>> 0533489300f9f3ff09ee99de68a4e9bb3652c7af
 
+    Flash::success("Se ha registrado el producto ".$product->nombre." de forma exitosa.");
+
+
+<<<<<<< HEAD
 
         return redirect()->route('products.index');              
     }
+=======
+}
+>>>>>>> 0533489300f9f3ff09ee99de68a4e9bb3652c7af
 
     /**
      * Display the specified resource.

@@ -1,69 +1,42 @@
-@extends('layouts.app')
+@extends('admin.template.main')
+
+@section('title', 'Login Sneppe | Bienvenido')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
+	<div class="container-fluid">
+		<div class="row" style="padding-top:20px;">
+			<div class="col s12 m6 l6 offset-m3 offset-l3 z-depth-3" style="padding-top: 50px; padding-bottom: 20px;">
+				
+				<div class="col s12" align="center">
+					<h2><i class="fa fa-quote-left" aria-hidden="true"></i> Login <i class="fa fa-quote-right" aria-hidden="true"></i></h2>
+					<hr class="uk-divider-icon">
+				</div>
+				
+				{!! Form::open(['route' => 'login', 'method' => 'POST']) !!}
+								    
+				    <div class="col s12">
+				        <label class="uk-form-label" for="form-stacked-text" style="font-size:15px;">Email <span class="red-text">*</span></label>
+				        <div class="uk-form-controls">
+				            {!! Form::email('email',null,['id' => 'form-stacked-text','class' => 'uk-input z-depth-2', 'type' => 'text','required','placeholder' => 'example@gmail.com']) !!}
+				        </div>
+				    </div>
+				    
+				    <div class="col s12">
+				        <label class="uk-form-label" for="form-stacked-text" style="font-size:15px;">Password <span class="red-text">*</span></label>
+				        <div class="uk-form-controls">
+				            {!! Form::text('password',null,['id' => 'form-stacked-text','class' => 'uk-input z-depth-2', 'type' => 'text','required','placeholder' => '*******************']) !!}
+				        </div>
+				    </div>
+ 
+				    <div class="uk-animation-toggle uk-margin col s12" align="center">
+		            	{!! Form::submit('Ingresar', ['class' => 'uk-animation-shake uk-animation-reverse uk-button uk-button-default black white-text z-depth-4','style' => 'border:none']) !!}
+				    </div>
+				
+				{!! Form::close('') !!}
+				
+			</div>
+		</div>
+	</div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
