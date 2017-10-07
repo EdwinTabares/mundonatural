@@ -27,7 +27,7 @@ Route::get('/', function () {
 Route::resource('products','ProductController');
 Route::resource('notices','NoticesController');
 Route::resource('contacts','ContactsController');
-
+Route::resource('users','UserController');
 
 // rutas de autenticacion
 Auth::routes();

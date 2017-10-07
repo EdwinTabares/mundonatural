@@ -41,7 +41,7 @@
                     <li class="active"><a href="{{ url('/') }}">Inicio</a></li>
                     <li class="active"><a href="{{ route('products.index') }}">Productos</a></li>
                      <li class="active"><a href="{{ route('notices.index') }}">Noticias</a></li>
-                      <li class="active"><a href="#">Usuarios</a></li>
+                      <li class="active"><a href="{{ route('users.index') }}">Usuarios</a></li>
                        <li class="active"><a href="#">Comentarios</a></li>
                 </ul>
 
