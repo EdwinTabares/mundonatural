@@ -1,1 +1,1 @@
-index contactos
+{{$contactos}}

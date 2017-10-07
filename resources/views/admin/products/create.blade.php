@@ -4,17 +4,17 @@
 
 @section('content')
 
-{!! Form::open(['route' => 'products.store', 'method' => 'POST']) !!}
+{!! Form::open(['route' => 'products.store', 'method' => 'POST', 'files' => true] ) !!}
 
 <div class="form-group">
 	{!! Form::label('nombre', 'Nombre') !!}
-	{!! Form::text('nombre', null, ['class' =>'form-control', 'placeholder' => 'Nombre producto', 'required']) !!}
+	{!! Form::text('nombre', null, ['class' =>'form-control', 'placeholder' => 'Nombre producto', 'required']) !!} 
 </div>
 
 
 <div class="form-group">
 	{!! Form::label('descripcion', 'Descripcion') !!}
-	{!! Form::text('descripcion', null, ['class' =>'form-control', 'placeholder' => 'Descripcion producto', 'required']) !!}
+	{!! Form::textarea('descripcion', null, ['class' =>'form-control', 'placeholder' => 'Descripcion producto', 'required']) !!}
 </div>
 
 <div class="form-group">

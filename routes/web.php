@@ -25,6 +25,7 @@ Route::get('/', function () {
 
 // ruta de los controladores
 Route::resource('products','ProductController');
+Route::resource('notices','NoticesController');
 Route::resource('contacts','ContactsController');
 
 

@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Modelo;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Noticia extends Model
+class Notice extends Model
 {
-
-	 /**
+   	 /**
      * The attributes that are mass assignable.
      *
      * @var array

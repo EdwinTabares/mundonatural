@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
+use App\Notice;
 use Laracasts\Flash\Flash;
 use Illuminate\Support\Facades\Storage;
 
-class ProductController extends Controller
+
+class NoticesController extends Controller
 {
-	public function index()
+   public function index()
     {
 
-      $products = Product::orderBy('id', 'ASC')->paginate(4);
-      return view('admin.products.index')->with('products', $products);
+      $notices = Notice::orderBy('id', 'ASC')->paginate(4);
+      return view('admin.notices.index')->with('notices', $notices);
     }
 
         /**
@@ -23,7 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-       return view('admin.products.create');
+       return view('admin.notices.create');
     }
 
     /**
@@ -34,23 +35,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Product($request->all());
+        $notice = new Notice($request->all());
 
           if($request->file('imagen'))
         {
             $file = $request->file('imagen');
-            $name = 'producto_' . time() . '.'. $file->getClientOriginalExtension();
-            $path =  public_path() . '/storage/productos/'; 
+            $name = 'noticia_' . time() . '.'. $file->getClientOriginalExtension();
+            $path =  public_path() . '/storage/noticias/'; 
             $file -> move($path,$name);
-            $product->imagen = $name;
+            $notice->imagen = $name;
         }
 
 
 
-        $product->save();
+        $notice->save();
 
 
-        return redirect()->route('products.index');              
+        return redirect()->route('notices.index');              
     }
 
     /**
@@ -59,7 +60,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(notice $notice)
     {
 
     }
@@ -70,9 +71,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(notice $notice)
     {
-        return view('admin.products.edit',compact('product'));
+        return view('admin.notices.edit',compact('notice'));
     }
 
     /**
@@ -82,12 +83,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, notice $notice)
     {
       
 
-        $product->update($request->all());
-        return redirect()->route('admin.products.index');
+        $notice->update($request->all());
+        return redirect()->route('admin.notices.index');
     }
 
     /**
@@ -96,10 +97,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $product)
+    public function destroy( $notice)
     {
-        Product::destroy($product);
-        return redirect()->route('admin.products.index');
+        notice::destroy($notice);
+        return redirect()->route('admin.notices.index');
     }
 
 }

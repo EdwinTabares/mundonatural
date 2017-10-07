@@ -16,7 +16,6 @@ class ContactsController extends Controller
      */
      public function index(Request $request)
      {
-
         $contactos = Contact::search($request->nombre)->paginate(5);
         return view('admin.contact.index')->with('contactos',$contactos);
     }
